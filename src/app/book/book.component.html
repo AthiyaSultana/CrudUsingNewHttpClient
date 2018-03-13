@@ -17,7 +17,10 @@
     <tr *ngFor="let book of books">
       <td>{{ book.title }}</td>
       <td>{{ book.author }}</td>
-      <td>Show Detail</td>
+      <td><a [routerLink]="['/book-details',book._id]" class="btn btn-success">Show Detail</a></td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteBook(book._id)">Delete</button>
+      </td>
     </tr>
     </tbody>
   </table>

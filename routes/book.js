@@ -4,31 +4,31 @@ var mongoose = require('mongoose');
 var Book = require('../models/Book.js');
 
 /* GET ALL BOOKS */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   Book.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
   });
 });
-
-/* GET SINGLE BOOK BY ID */
-router.get('/:id', function(req, res, next) {
-  Book.findById(req.params.id, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-});
-
 /* SAVE BOOK */
-router.post('/saveBook', function(req, res, next) {
+router.post('/saveBook', function (req, res, next) {
+  console.log('req.body', req.body);
   Book.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
+/* GET SINGLE BOOK BY ID */
+router.get('/getBookById', function (req, res, next) {
+  Book.findById(req.query.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 
 /* UPDATE BOOK */
-router.put('/updateBook:id', function(req, res, next) {
+router.put('/updateBook/:id', function (req, res, next) {
   Book.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -36,10 +36,10 @@ router.put('/updateBook:id', function(req, res, next) {
 });
 
 /* DELETE BOOK */
-router.delete('/:id', function(req, res, next) {
-  Book.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+router.delete('/deleteBook/:id', function (req, res, next) {
+  Book.findByIdAndRemove(req.params.id, req.body, function (err, succcess) {
     if (err) return next(err);
-    res.json(post);
+    res.json(succcess);
   });
 });
 

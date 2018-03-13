@@ -2,7 +2,7 @@
   <h1>Edit Book</h1>
   <div class="row">
     <div class="col-md-6">
-      <form (ngSubmit)="updateBook(book._id)" #bookForm="ngForm">
+      <form (ngSubmit)="updateBook(book._id , book)" #bookForm="ngForm">
         <div class="form-group">
           <label for="name">ISBN</label>
           <input type="text" class="form-control" [(ngModel)]="book.isbn" name="isbn" required>

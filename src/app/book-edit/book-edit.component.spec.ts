@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
+import {BookServiceService} from '../book-service.service';
 
-import { BookEditComponent } from './book-edit.component';
+import {BookEditComponent} from './book-edit.component';
 
 describe('BookEditComponent', () => {
   let component: BookEditComponent;
@@ -8,9 +12,11 @@ describe('BookEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookEditComponent ]
+      imports: [HttpClientModule, RouterTestingModule, FormsModule],
+      declarations: [BookEditComponent],
+      providers: [BookServiceService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

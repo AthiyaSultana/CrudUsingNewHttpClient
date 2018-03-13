@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {BookServiceService} from '../book-service.service';
 
 @Component({
   selector: 'app-book-create',
@@ -12,20 +13,22 @@ export class BookCreateComponent implements OnInit {
 
   book = {};
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private bookService: BookServiceService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
   saveBook() {
-    this.http.post('/book/saveBook', this.book)
-      .subscribe(res => {
-          const id = res['_id'];
-          this.router.navigate(['/book-details', id]);
-        }, (err) => {
-          console.log(err);
-        }
-      );
+    console.log('saveBook', this.book);
+    this.bookService.addBook(this.book).subscribe(res => {
+        console.log('res', res);
+        const id = res['_id'];
+        this.router.navigate(['/book-details', id]);
+      }, (err) => {
+        console.log(err);
+      }
+    );
   }
 
 }

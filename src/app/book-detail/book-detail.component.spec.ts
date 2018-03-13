@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
-import { BookDetailComponent } from './book-detail.component';
+import {BookDetailComponent} from './book-detail.component';
+import {BookServiceService} from '../book-service.service';
 
 describe('BookDetailComponent', () => {
   let component: BookDetailComponent;
@@ -8,9 +11,11 @@ describe('BookDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookDetailComponent ]
+      imports: [HttpClientModule, RouterTestingModule],
+      declarations: [BookDetailComponent],
+      providers: [BookServiceService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
